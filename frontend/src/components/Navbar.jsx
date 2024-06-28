@@ -14,7 +14,7 @@ function Navbar() {
             <nav className='bg-black p-4 fixed w-full top-0 z-[1000] transition-["background-color 0.3s ease-in-out"] bg-opacity-50'>
                 <div className="flex items-center justify-between">
                     {/* Logo */}
-                    <div className="text-white text-2xl font-bold">Utkarsh Paliwal</div>
+                    <div className="text-white text-3xl font-bold">Utkarsh Paliwal</div>
 
                     <div className="md:hidden">
                         <button onClick={toggleMenu} className="text-white">
@@ -33,7 +33,7 @@ function Navbar() {
                 </div>
 
                 {isMenuOpen ? (
-                    <ul className='flex-col md:hidden my-2'>
+                    <ul className='flex-col md:hidden my-2 text-3xl gap-1'>
                         <li><Link to="intro" smooth={true} duration={500} className='text-white hover:cursor-pointer hover:text-gray-700'>Home</Link></li>
                         <li><Link to="about" smooth={true} duration={500} className='text-white hover:cursor-pointer hover:text-gray-700'>About</Link></li>
                         <li><Link to="projects" smooth={true} duration={500} className='text-white hover:cursor-pointer hover:text-gray-700'>Projects</Link></li>
