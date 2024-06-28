@@ -18,7 +18,7 @@ function Contact() {
     }
     return (
         <div id="contact" className="border h-[500px] flex justify-center w-full bg-white py-10 px-2 sm:px-10 md:px-32">
-            <div className="border border-black w-full max-w-[650px] p-2 sm:p-4 rounded-md">
+            <div className=" w-full max-w-[650px] p-2 sm:p-4 rounded-md">
                 <div>
                     <h1 className="text-4xl">Get in touch</h1>
                 </div>
