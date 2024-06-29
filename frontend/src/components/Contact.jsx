@@ -1,4 +1,6 @@
 import { useState } from "react";
+import axios from 'axios';
+import { baseURL } from "../../baseURL";
 
 function Contact() {
     const [formData, setFormData] = useState({
@@ -13,8 +15,20 @@ function Contact() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = () => {
-
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(formData);
+        try {
+            const { data } = await axios.post(`${baseURL}/send-email`, formData);
+            if (!data) {
+                console.log('something went wrong');
+            }
+            else {
+                console.log('mail sent successfully');
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <div id="contact" className="border h-[500px] flex justify-center w-full bg-white py-10 px-2 sm:px-10 md:px-32">
