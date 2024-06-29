@@ -39,9 +39,10 @@ const transporter = nodemailer.createTransport({
 
 });
 
-app.post("/send-email", async (req, res) => {
+app.post("/api/send-email", async (req, res) => {
     try {
         const { name, email, message } = req.body;
+        console.log(name, email, message);
         const mailOptions1 = {
             from: process.env.PROTON_USERNAME,
             to: process.env.ADMIN_EMAIL,
