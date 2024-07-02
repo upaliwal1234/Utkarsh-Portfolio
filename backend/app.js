@@ -12,29 +12,16 @@ app.use(cors());
 app.use(express.json());
 
 
-// -------------Deployment----------------
-const __dirname1 = path.resolve();
-if (process.env.NODE_ENV === 'production') {
-
-    app.use(express.static(path.join(__dirname1, './frontend/dist')));
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname1, "./frontend", "dist", "index.html"));
-    })
-}
-else {
-    app.get('/', (req, res) => {
-        res.send('API is running successfully');
-    })
-}
-
-// -------------Deployment----------------
+app.get('/', (req, res) => {
+    res.send('API is running successfully');
+})
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
-    secure: false, // upgrade later with STARTTLS
+    secure: false,
     auth: {
-        user: process.env.PROTON_USERNAME,
-        pass: process.env.PROTON_PASSWORD,
+        user: process.env.MAIL_USERNAME,
+        pass: process.env.MAIL_USERNAME,
     }
 
 });
@@ -44,7 +31,7 @@ app.post("/api/send-email", async (req, res) => {
         const { name, email, message } = req.body;
         console.log(name, email, message);
         const mailOptions1 = {
-            from: process.env.PROTON_USERNAME,
+            from: process.env.MAIL_USERNAME,
             to: process.env.ADMIN_EMAIL,
             subject: 'PORTFOLIO API TEST',
             html: `<strong>${name} wants to get in touch with you! it works!</strong> <br> <p> ${message} </p> <br> <h4>Contact him at: ${email} </h4>`
@@ -52,7 +39,7 @@ app.post("/api/send-email", async (req, res) => {
 
         const data = await transporter.sendMail(mailOptions1);
         const mailOptions2 = {
-            from: process.env.PROTON_USERNAME,
+            from: process.env.MAIL_USERNAME,
             to: email,
             subject: `Thanks! Utkarsh Paliwal will contact you soon.`,
             html: `<h1> Hey ${name}! Thanks for visiting my website. </h1> <br> <h3> I will contact you soon. </h3>`
