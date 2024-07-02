@@ -48,10 +48,12 @@ function Contact() {
     }
     return (
         <>
-            <div id="contact" className="border h-[500px] flex justify-center w-full bg-white py-10 px-2 sm:px-10 md:px-32">
+            <div id="contact" className="border flex justify-center w-full bg-white py-10 px-2 sm:px-10 md:px-32">
                 <div className=" w-full max-w-[650px] p-2 sm:p-4 rounded-md">
                     <div>
-                        <h1 className="text-4xl">Get in touch</h1>
+                        <h1 className="text-4xl">Let&apos;s Connect</h1>
+                        <p className="text-gray-600 my-4 font-sans">I&apos;m always excited to collaborate on new projects and bring innovative ideas to life. Whether you&apos;re looking to build a new application, enhance an existing one, or just want to chat about tech, feel free to reach out!
+                        </p>
                     </div>
                     <form className="text-xl" onSubmit={handleSubmit}>
                         <div className="flex flex-col">
