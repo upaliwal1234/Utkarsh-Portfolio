@@ -34,7 +34,7 @@ app.post("/api/send-email", async (req, res) => {
             from: process.env.MAIL_USERNAME,
             to: process.env.ADMIN_EMAIL,
             subject: 'PORTFOLIO API TEST',
-            html: `<strong>${name} wants to get in touch with you! it works!</strong> <br> <p> ${message} </p> <br> <h4>Contact him at: ${email} </h4>`
+            html: `<strong>${name} wants to get in touch with you! it works!</strong> <br> <p> ${message} </p> <br> <h4>Contact ${name} at: ${email} </h4>`
         };
 
         const data = await transporter.sendMail(mailOptions1);
