@@ -8,7 +8,7 @@ function Navbar() {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     }
-    console.log(isMenuOpen);
+
     return (
         <div>
             <nav className='bg-black p-4 fixed w-full top-0 z-[1000] transition-["background-color 0.3s ease-in-out"] bg-opacity-50'>
