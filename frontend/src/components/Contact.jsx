@@ -3,6 +3,7 @@ import axios from 'axios';
 import { baseURL } from "../../baseURL";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { v4 as uuid } from 'uuid';
 
 
 function Contact() {
@@ -20,12 +21,29 @@ function Contact() {
         setFormData({ ...formData, [name]: value });
     };
 
+    const getOptions = () => {
+        let clientId = localStorage.getItem('clientId');
+        if (!clientId) {
+            clientId = uuid()
+            localStorage.setItem('clientId', clientId)
+        }
+
+        const options = {
+            headers: {
+                'Content-Type': 'application/json',
+                'client-id': clientId
+            },
+        }
+        return options;
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         // console.log(formData);
         setIsLoading(true);
         try {
-            const { data } = await axios.post(`${baseURL}/send-email`, formData);
+            const options = getOptions();
+            const { data } = await axios.post(`${baseURL}/send-email`, formData, options);
             if (!data) {
                 console.log('something went wrong');
                 toast.error('some error occured while sending mail')
@@ -42,7 +60,12 @@ function Contact() {
             setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
-            toast.error('some error occured while sending mail')
+            if (error?.response?.status == 429) {
+                toast.error("Message already sent. Please wait for a response")
+            }
+            else {
+                toast.error('some error occured while sending mail')
+            }
             console.log(error);
         }
     }
